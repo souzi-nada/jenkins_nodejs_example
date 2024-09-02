@@ -24,4 +24,13 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            slackSend (
+                channel: "yat",
+                color: "good",
+                message: "Build ${env.BUILD_NUMBER} was successfull! ${env.BUILD_URL}  -  ${BUILD_URL}"
+            )
+        }
+    }
 }

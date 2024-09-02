@@ -33,12 +33,12 @@ pipeline {
                 message: "Build ${env.BUILD_NUMBER} was successfull! ${env.BUILD_URL}  -  ${BUILD_URL}"
             )
         }
-        failure {
+        always {
             slackSend (
                 channel: "yat",
                 color: "good",
                 tokenCredentialId: "slack",
-                message: "Build ${env.BUILD_NUMBER} was failed! ${env.BUILD_URL}"
+                message: "Build ${env.BUILD_NUMBER} was failed! ${env.BUILD_URL} ${env.BUILD_STATUS}"
             )
         }
     }

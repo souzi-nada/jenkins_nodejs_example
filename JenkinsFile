@@ -29,6 +29,7 @@ pipeline {
             slackSend (
                 channel: "yat",
                 color: "good",
+                tokenCredentialId: "slack",
                 message: "Build ${env.BUILD_NUMBER} was successfull! ${env.BUILD_URL}  -  ${BUILD_URL}"
             )
         }

@@ -8,15 +8,6 @@ pipeline {
                 git 'https://github.com/IslamReda/jenkins_nodejs_example.git'
             }
         }
-        post {
-        success {
-            slackSend (
-                channel: "yat",
-                color: "good",
-                tokenCredentialId: "slack",
-                message: "Build ${env.BUILD_NUMBER} was successfull! ${env.BUILD_URL}  -  ${BUILD_URL}"
-            )
-        }
         stage('buildPush') {
             steps {
                 withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"username",passwordVariable:"pass")]){

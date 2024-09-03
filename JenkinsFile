@@ -32,7 +32,7 @@ pipeline {
             slackSend(
                 channel: "dev",
                 color: "good",
-                message: "${env.JOB_NAME} run successfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)  ${BUILD_STATUS}"
+                message: "${env.JOB_NAME} run successfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)  ${env.BUILD_STATUS}"
             )
         }
     }

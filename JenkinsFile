@@ -28,18 +28,18 @@ pipeline {
         // }
     }
     post {
-        always {
+        success {
             slackSend(
                 channel: "dev",
                 color: "good",
-                message: "${env.JOB_NAME} run successfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)  ${BUILD_STATUS}"
+                message: "${env.JOB_NAME} run successfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)"
             )
         }
         failure {
             slackSend(
                 channel: "dev",
                 color: "bad",
-                message: "${env.JOB_NAME} run unsuccessfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>) "
+                message: "${env.JOB_NAME} run unsuccessfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)"
             )
         }
     }

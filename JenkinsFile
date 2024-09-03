@@ -35,5 +35,12 @@ pipeline {
                 message: "${env.JOB_NAME} run successfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)  ${env.BUILD_STATUS}"
             )
         }
+        failure {
+            slackSend(
+                channel: "dev",
+                color: "bad",
+                message: "${env.JOB_NAME} run successfully with build no. ${env.BUILD_NUMBER} URL: (<${env.BUILD_URL}|Open>)  ${STATUS}"
+            )
+        }
     }
 }

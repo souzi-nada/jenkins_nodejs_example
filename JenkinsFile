@@ -28,7 +28,7 @@ pipeline {
         // }
     }
     post {
-        success {
+        always {
             slackSend(
                 channel: "dev",
                 color: "good",

@@ -10,19 +10,24 @@ pipeline {
         stage('build') {
             steps {
                 withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USER",passwordVariable:"PASS")]){
-                sh 'docker build . -f dockerfile -t ${USER}/nodejs-iamge:v1.${BUILD_NUMBER}'
-                sh 'docker login -u ${USER} -p ${PASS}'
-                sh 'docker push ${USER}/nodejs-iamge:v1.${BUILD_NUMBER}'
+                sh 'docker build -f dockerfile -t ${USER}/nodejs-iamge:v1.${BUILD_NUMBER}'
                 }
             }
         }
-    
-        stage('deploy') {
-            steps {
-                withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USER",passwordVariable:"PASS")]){
-                sh 'docker run -d -p 3000:3000 ${USER}/nodejs-iamge:v1.${BUILD_NUMBER}'
+    }
+    post {
+        success {
+            withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USER",passwordVariable:"PASS")]){
+                sh 'docker login -u ${USER} -p ${PASS}'
+                sh 'docker push ${USER}/nodejs-iamge:v1.${BUILD_NUMBER}'
                 }
-            }
+        }
+        failure {
+            slackSend(
+                channel: "devops",
+                color: "danger",
+                message: "${env.JOB_NAME} is failed. Build no. ${env.BUILD_NUMBER} URL: ${env.BUILD_URL} (<${env.BUILD_URL}|Open the pipeline>)"
+            )
         }
     }
 }

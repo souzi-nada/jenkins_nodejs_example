@@ -28,6 +28,7 @@ pipeline {
                 color: "good",
                 message: "${env.JOB_NAME} is successeded. Build no. ${env.BUILD_NUMBER} (<https://hub.docker.com/repository/docker/${USER}/nodejs-iamge/general|Open the image link>)"
             )
+                sh 'docker rm -f $(docker ps -aq)'
                 sh 'docker run -d -p 3000:3000 ${USER}/nodejs-iamge:v1.${BUILD_NUMBER}'
             }
         }

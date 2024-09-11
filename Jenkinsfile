@@ -13,8 +13,8 @@ pipeline {
                 sh 'docker build . -f dockerfile -t ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
                 sh 'docker login -u ${USER} -p ${PASS}'
                 sh 'docker push ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
-                // sh 'docker rm -f $(docker ps -aq)'
-                sh 'docker run -d -p 3000:3000 ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
+                sh 'docker rm -f live'
+                sh 'docker run -d -p 3000:3000 --name live ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
                 }
             }
         }

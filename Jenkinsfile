@@ -7,8 +7,8 @@ pipeline {
                 git 'https://github.com/souzi-nada/jenkins_nodejs_example.git'
             }
         }
-        stage('build') {
-            steps {
+        //stage('build') {
+        //    steps {
              //   withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USER",passwordVariable:"PASS")]){
              //   sh 'docker build . -f dockerfile -t ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
              //  sh 'docker login -u ${USER} -p ${PASS}'
@@ -16,8 +16,8 @@ pipeline {
              //   sh 'docker rm -f live'
              //   sh 'docker run -d -p 3000:3000 --name live ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
              //   }
-            }
-        }
+        //    }
+        //}
     }
     // post {
     //     success {

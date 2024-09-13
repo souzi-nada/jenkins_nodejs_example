@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-    }
+    
     // post {
     //     success {
     //         withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USER",passwordVariable:"PASS")]){

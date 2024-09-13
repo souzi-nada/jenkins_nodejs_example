@@ -15,10 +15,10 @@ pipeline {
              //   sh 'docker push ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
              //   sh 'docker rm -f live'
              //   sh 'docker run -d -p 3000:3000 --name live ${USER}/nodejs-iamge-yat225:v1.${BUILD_NUMBER}'
-                }
+             //   }
             }
         }
-    
+    }
     // post {
     //     success {
     //         withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USER",passwordVariable:"PASS")]){
